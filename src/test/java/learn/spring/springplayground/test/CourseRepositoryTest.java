@@ -65,4 +65,15 @@ public class CourseRepositoryTest {
         Assertions.assertThrowsExactly(EmptyResultDataAccessException.class,()->cr.findById(102));
 
     }
+    @Test
+    public void update()
+    {
+        Course c=cr.findById(1);
+        c.setName("TOFL");
+        c.setStartDate(LocalDate.now());
+        cr.update(c);
+         c=cr.findById(1);
+         Assertions.assertEquals(c.getName(),"TOFL");
+
+    }
 }

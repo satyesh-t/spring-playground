@@ -23,7 +23,7 @@ public class CourseJdbcRepository implements CourseRepository {
     @Override
     public Course findById(Integer id) {
         String sql="SELECT * FROM COURSE WHERE COURSE_ID=?";
-        Object args[]=new Object[]{id};
+        Object []args=new Object[]{id};
         int[] argsType=new int[]{Types.INTEGER};
         Course c=jdbcTemplate.queryForObject(sql,args,argsType,new BeanPropertyRowMapper<>(Course.class));
         return c;
@@ -59,6 +59,16 @@ public class CourseJdbcRepository implements CourseRepository {
 
     @Override
     public void update(Course course) {
+       String sql= "Update  course set name=?,student_count=?,start_date=? where course_id=?";
+       int[] argTypes=new int[]{Types.VARCHAR,
+               Types.INTEGER,
+               Types.TIMESTAMP,
+               Types.INTEGER};
+       Object[] args=new Object[]{course.getName(),
+               course.getStudentCount(),
+               course.getStartDate(),
+               course.getCourseId()};
+       jdbcTemplate.update(sql,args,argTypes);
 
     }
 }
