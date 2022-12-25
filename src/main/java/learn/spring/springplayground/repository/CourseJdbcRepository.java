@@ -30,12 +30,30 @@ public class CourseJdbcRepository implements CourseRepository {
     }
 
     @Override
-    public void insert(Course course) {
-jdbcTemplate.
+    public void insert(Course course)
+    {
+        Object[] args=new Object[]{course.getCourseId(),
+                course.getName(),
+                course.getStudentCount(),
+                course.getStartDate()};
+        int[] argsTypes=new int[]{Types.INTEGER,
+                Types.VARCHAR,
+                Types.INTEGER,
+                Types.TIMESTAMP};
+        jdbcTemplate.update("insert into course(course_id,name,student_count,start_date) values(?,?,?,?)",args,
+                argsTypes);
+
     }
 
     @Override
     public void deleteById(Integer id) {
+
+        String sql="DELETE from COURSE where course_id=?";
+        int [] argTypes=new int[]{Types.INTEGER};
+        Object[] args=new Object[]{id};
+        jdbcTemplate.update(sql,
+                args,
+                argTypes);
 
     }
 
