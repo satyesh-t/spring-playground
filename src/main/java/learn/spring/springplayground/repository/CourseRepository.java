@@ -8,7 +8,7 @@ public interface CourseRepository {
 
     public List<Course> findAll();
     public Course findById(final Integer id);
-    public  void insert(Course course);
+    public  Course insert(Course course);
     public void deleteById(final Integer id);
     public void update(Course course);
 }
