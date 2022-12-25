@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -23,9 +22,10 @@ public class CourseRepositoryTest {
 
     @Test
     public void findAllTest()
+
     {
-        List<Course> allcourse=cr.findAll();
-        Assertions.assertTrue(allcourse.size()>0);
+        List<Course> allCourse=cr.findAll();
+        Assertions.assertTrue(allCourse.size()>0);
     }
 
     @Test
@@ -37,8 +37,6 @@ public class CourseRepositoryTest {
     @Test
     public void findByIdException()
     {
-        Course course=cr.findById(1);
-
         Assertions.assertThrowsExactly(EmptyResultDataAccessException.class,() -> cr.findById(99));
     }
 
