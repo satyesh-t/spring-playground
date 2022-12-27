@@ -23,7 +23,7 @@ public class CourseRepositoryTest {
     CourseRepository cr;
 
     @Test
-    @Disabled
+    //@Disabled
     public void findAllTest() {
         List<Course> allcourse = cr.findAll();
         Assertions.assertTrue(allcourse.size() > 0);
